@@ -1,9 +1,9 @@
 import SwiftUI
 
 extension Color {
-    static let priorityHigh   = Color(red: 1.0,   green: 0.231, blue: 0.188) // #ff3b30
-    static let priorityMedium = Color(red: 1.0,   green: 0.584, blue: 0.0)   // #ff9500
-    static let priorityLow    = Color(red: 0.204, green: 0.780, blue: 0.349) // #34c759
+    static let priorityHigh   = Color("PriorityHigh")
+    static let priorityMedium = Color("PriorityMedium")
+    static let priorityLow    = Color("PriorityLow")
 }
 
 extension Todo.Priority {
