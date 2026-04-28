@@ -1,11 +1,5 @@
 import SwiftUI
 
-extension Color {
-    static let priorityHigh   = Color("PriorityHigh")
-    static let priorityMedium = Color("PriorityMedium")
-    static let priorityLow    = Color("PriorityLow")
-}
-
 extension Todo.Priority {
     var color: Color {
         switch self {
