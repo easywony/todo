@@ -36,6 +36,20 @@ struct TodoListView: View {
                 }
             }
             .onAppear { store.send(.onAppear) }
+            .sheet(
+                isPresented: Binding(
+                    get: { store.isAddTodoPresented },
+                    set: { isPresented in
+                        if !isPresented { store.send(.addTodoDismissed) }
+                    }
+                )
+            ) {
+                AddTodoView(
+                    store: Store(initialState: AddTodoFeature.State()) {
+                        AddTodoFeature()
+                    }
+                )
+            }
         }
     }
 }

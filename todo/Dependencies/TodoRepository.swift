@@ -4,6 +4,7 @@ import Foundation
 struct TodoRepository {
     var fetchAll: @Sendable () async throws -> [Todo]
     var save: @Sendable ([Todo]) async throws -> Void
+    var add: @Sendable (Todo) async throws -> Void
 }
 
 extension TodoRepository: DependencyKey {
@@ -18,12 +19,21 @@ extension TodoRepository: DependencyKey {
         save: { todos in
             let data = try JSONEncoder().encode(todos)
             UserDefaults.standard.set(data, forKey: "todos")
+        },
+        add: { todo in
+            let existing = (try? JSONDecoder().decode(
+                [Todo].self,
+                from: UserDefaults.standard.data(forKey: "todos") ?? Data()
+            )) ?? []
+            let data = try JSONEncoder().encode(existing + [todo])
+            UserDefaults.standard.set(data, forKey: "todos")
         }
     )
 
     static let testValue = TodoRepository(
         fetchAll: { [] },
-        save: { _ in }
+        save: { _ in },
+        add: { _ in }
     )
 }
 

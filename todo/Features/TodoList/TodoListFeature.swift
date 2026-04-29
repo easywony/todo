@@ -6,6 +6,7 @@ struct TodoListFeature {
     struct State: Equatable {
         var todos: IdentifiedArrayOf<Todo> = []
         var isLoading = false
+        var isAddTodoPresented = false
     }
 
     enum Action {
@@ -15,6 +16,7 @@ struct TodoListFeature {
         case toggleCompleted(id: Todo.ID)
         case deleteTodo(id: Todo.ID)
         case addTodoButtonTapped
+        case addTodoDismissed
         case todoRowTapped(id: Todo.ID)
     }
 
@@ -54,7 +56,23 @@ struct TodoListFeature {
                 try await todoRepository.save(Array(todos))
             }
 
-        case .addTodoButtonTapped, .todoRowTapped:
+        case .addTodoButtonTapped:
+            state.isAddTodoPresented = true
+            return .none
+
+        case .addTodoDismissed:
+            state.isAddTodoPresented = false
+            state.isLoading = true
+            return .run { send in
+                do {
+                    let todos = try await todoRepository.fetchAll()
+                    await send(.todosLoaded(todos))
+                } catch {
+                    await send(.todoLoadFailed)
+                }
+            }
+
+        case .todoRowTapped:
             return .none
         }
     }
