@@ -8,7 +8,7 @@ struct TodoListView: View {
     var body: some View {
         NavigationStack {
             List {
-                ForEach(store.todos) { todo in
+                ForEach(store.displayedTodos) { todo in
                     TodoRowView(todo: todo) {
                         store.send(.toggleCompleted(id: todo.id))
                     }
@@ -29,12 +29,20 @@ struct TodoListView: View {
             .overlay {
                 if store.isLoading {
                     ProgressView()
-                } else if store.todos.isEmpty {
-                    ContentUnavailableView(
-                        "할 일이 없어요",
-                        systemImage: "checklist",
-                        description: Text("+ 버튼을 눌러 할 일을 추가해보세요")
-                    )
+                } else if store.displayedTodos.isEmpty {
+                    if store.filterPriority != nil {
+                        ContentUnavailableView(
+                            "해당하는 할 일이 없어요",
+                            systemImage: "line.3.horizontal.decrease.circle",
+                            description: Text("필터를 변경해보세요")
+                        )
+                    } else {
+                        ContentUnavailableView(
+                            "할 일이 없어요",
+                            systemImage: "checklist",
+                            description: Text("+ 버튼을 눌러 할 일을 추가해보세요")
+                        )
+                    }
                 }
             }
             .navigationTitle("할 일")
@@ -44,6 +52,41 @@ struct TodoListView: View {
                         store.send(.addTodoButtonTapped)
                     } label: {
                         Image(systemName: "plus")
+                    }
+                }
+                ToolbarItem(placement: .topBarLeading) {
+                    Menu {
+                        Section("필터") {
+                            Button {
+                                store.send(.filterChanged(nil))
+                            } label: {
+                                Label("전체", systemImage: store.filterPriority == nil ? "checkmark" : "circle")
+                            }
+                            ForEach(Todo.Priority.allCases, id: \.self) { priority in
+                                Button {
+                                    store.send(.filterChanged(priority))
+                                } label: {
+                                    Label(
+                                        priority.label,
+                                        systemImage: store.filterPriority == priority ? "checkmark" : "circle"
+                                    )
+                                }
+                            }
+                        }
+                        Section("정렬") {
+                            ForEach(TodoListFeature.SortOrder.allCases, id: \.self) { order in
+                                Button {
+                                    store.send(.sortOrderChanged(order))
+                                } label: {
+                                    Label(
+                                        order.rawValue,
+                                        systemImage: store.sortOrder == order ? "checkmark" : "circle"
+                                    )
+                                }
+                            }
+                        }
+                    } label: {
+                        Image(systemName: store.filterPriority != nil ? "line.3.horizontal.decrease.circle.fill" : "line.3.horizontal.decrease.circle")
                     }
                 }
             }
