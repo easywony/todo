@@ -10,7 +10,8 @@ struct TodoListFeature {
 
     enum Action {
         case onAppear
-        case todosLoaded(Result<[Todo], Error>)
+        case todosLoaded([Todo])
+        case todoLoadFailed
         case toggleCompleted(id: Todo.ID)
         case deleteTodo(id: Todo.ID)
         case addTodoButtonTapped
@@ -25,17 +26,20 @@ struct TodoListFeature {
             case .onAppear:
                 state.isLoading = true
                 return .run { send in
-                    await send(.todosLoaded(
-                        Result { try await todoRepository.fetchAll() }
-                    ))
+                    do {
+                        let todos = try await todoRepository.fetchAll()
+                        await send(.todosLoaded(todos))
+                    } catch {
+                        await send(.todoLoadFailed)
+                    }
                 }
 
-            case .todosLoaded(.success(let todos)):
+            case .todosLoaded(let todos):
                 state.isLoading = false
                 state.todos = IdentifiedArray(uniqueElements: todos)
                 return .none
 
-            case .todosLoaded(.failure):
+            case .todoLoadFailed:
                 state.isLoading = false
                 return .none
 
