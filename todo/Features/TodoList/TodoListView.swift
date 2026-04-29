@@ -3,6 +3,7 @@ import SwiftUI
 
 struct TodoListView: View {
     @Bindable var store: StoreOf<TodoListFeature>
+    @State private var selectedTodo: Todo?
 
     var body: some View {
         NavigationStack {
@@ -13,7 +14,7 @@ struct TodoListView: View {
                     }
                     .contentShape(Rectangle())
                     .onTapGesture {
-                        store.send(.todoRowTapped(id: todo.id))
+                        selectedTodo = todo
                     }
                     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                         Button(role: .destructive) {
@@ -34,6 +35,13 @@ struct TodoListView: View {
                         Image(systemName: "plus")
                     }
                 }
+            }
+            .navigationDestination(item: $selectedTodo) { todo in
+                TodoDetailView(
+                    store: Store(initialState: TodoDetailFeature.State(todo: todo)) {
+                        TodoDetailFeature()
+                    }
+                )
             }
             .onAppear { store.send(.onAppear) }
             .sheet(
