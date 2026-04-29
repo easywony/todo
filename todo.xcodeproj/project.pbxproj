@@ -33,8 +33,6 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		2DAF72062FA059EC005B87B3 /* todo */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = todo;
 			sourceTree = "<group>";
 		};
@@ -93,7 +91,6 @@
 			children = (
 				0BCD911BE5F0DFAABA94CF3D /* TodoListFeatureTests.swift */,
 			);
-			name = todoTests;
 			path = todoTests;
 			sourceTree = "<group>";
 		};
@@ -242,7 +239,12 @@
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.1;
-				OTHER_LDFLAGS = "-Xlinker -undefined -Xlinker dynamic_lookup";
+				OTHER_LDFLAGS = (
+					"-Xlinker",
+					"-undefined",
+					"-Xlinker",
+					dynamic_lookup,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -373,7 +375,6 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_PREVIEWS = YES;
-				OTHER_LDFLAGS = "-Xlinker -undefined -Xlinker dynamic_lookup";
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -391,6 +392,12 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 15.6;
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-Xlinker",
+					"-undefined",
+					"-Xlinker",
+					dynamic_lookup,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.test.todo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -455,7 +462,12 @@
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.1;
-				OTHER_LDFLAGS = "-Xlinker -undefined -Xlinker dynamic_lookup";
+				OTHER_LDFLAGS = (
+					"-Xlinker",
+					"-undefined",
+					"-Xlinker",
+					dynamic_lookup,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
