@@ -1,0 +1,94 @@
+<h2>TodoList 화면 레이아웃</h2>
+<p class="subtitle">접근법 A — NavigationStack + List, 컴팩트 체크리스트 스타일</p>
+
+<div class="section">
+  <div class="mockup">
+    <div class="mockup-header">TodoList Screen</div>
+    <div class="mockup-body" style="padding:0;font-family:-apple-system,sans-serif;font-size:14px;">
+
+      <!-- NavigationBar -->
+      <div style="background:#f2f2f7;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #d1d1d6;">
+        <span style="font-size:20px;font-weight:700;color:#000;">할 일</span>
+        <span style="font-size:22px;color:#007aff;font-weight:300;">＋</span>
+      </div>
+
+      <!-- List Items -->
+      <div style="background:#fff;">
+
+        <!-- Item 1: High priority, not done -->
+        <div style="display:flex;align-items:center;padding:11px 16px;border-bottom:1px solid #e5e5ea;gap:12px;">
+          <span style="font-size:20px;color:#c7c7cc;">○</span>
+          <div style="flex:1;min-width:0;">
+            <div style="font-size:15px;font-weight:500;color:#000;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">디자인 시스템 토큰 정리</div>
+            <div style="display:flex;align-items:center;gap:6px;margin-top:2px;">
+              <span style="font-size:11px;font-weight:600;color:#ff3b30;background:#fff0f0;border-radius:4px;padding:1px 5px;">높음</span>
+              <span style="font-size:12px;color:#8e8e93;">4월 30일</span>
+            </div>
+          </div>
+          <span style="color:#c7c7cc;font-size:14px;">›</span>
+        </div>
+
+        <!-- Item 2: Medium priority, not done -->
+        <div style="display:flex;align-items:center;padding:11px 16px;border-bottom:1px solid #e5e5ea;gap:12px;">
+          <span style="font-size:20px;color:#c7c7cc;">○</span>
+          <div style="flex:1;min-width:0;">
+            <div style="font-size:15px;font-weight:500;color:#000;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">TodoList Feature 구현</div>
+            <div style="display:flex;align-items:center;gap:6px;margin-top:2px;">
+              <span style="font-size:11px;font-weight:600;color:#ff9500;background:#fff8f0;border-radius:4px;padding:1px 5px;">중간</span>
+              <span style="font-size:12px;color:#8e8e93;">5월 2일</span>
+            </div>
+          </div>
+          <span style="color:#c7c7cc;font-size:14px;">›</span>
+        </div>
+
+        <!-- Item 3: Low priority, not done -->
+        <div style="display:flex;align-items:center;padding:11px 16px;border-bottom:1px solid #e5e5ea;gap:12px;">
+          <span style="font-size:20px;color:#c7c7cc;">○</span>
+          <div style="flex:1;min-width:0;">
+            <div style="font-size:15px;font-weight:500;color:#000;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">README 업데이트</div>
+            <div style="display:flex;align-items:center;gap:6px;margin-top:2px;">
+              <span style="font-size:11px;font-weight:600;color:#34c759;background:#f0fff4;border-radius:4px;padding:1px 5px;">낮음</span>
+              <span style="font-size:12px;color:#8e8e93;">마감일 없음</span>
+            </div>
+          </div>
+          <span style="color:#c7c7cc;font-size:14px;">›</span>
+        </div>
+
+        <!-- Item 4: Completed -->
+        <div style="display:flex;align-items:center;padding:11px 16px;border-bottom:1px solid #e5e5ea;gap:12px;background:#fafafa;">
+          <span style="font-size:20px;color:#34c759;">✓</span>
+          <div style="flex:1;min-width:0;">
+            <div style="font-size:15px;font-weight:400;color:#8e8e93;text-decoration:line-through;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">초기 프로젝트 설정</div>
+            <div style="display:flex;align-items:center;gap:6px;margin-top:2px;">
+              <span style="font-size:11px;font-weight:600;color:#8e8e93;background:#f2f2f7;border-radius:4px;padding:1px 5px;">완료</span>
+            </div>
+          </div>
+          <span style="color:#c7c7cc;font-size:14px;">›</span>
+        </div>
+
+        <!-- Swipe hint -->
+        <div style="background:#fff5f5;padding:10px 16px;display:flex;align-items:center;gap:8px;">
+          <span style="font-size:12px;color:#ff3b30;">← 스와이프</span>
+          <div style="flex:1;display:flex;align-items:center;padding:11px 16px;background:#fff;border-radius:6px;gap:12px;box-shadow:0 1px 4px rgba(0,0,0,.08);">
+            <span style="font-size:20px;color:#c7c7cc;">○</span>
+            <div style="flex:1;">
+              <div style="font-size:15px;font-weight:500;color:#000;">항목 예시</div>
+            </div>
+            <span style="background:#ff3b30;color:#fff;font-size:12px;font-weight:600;padding:4px 10px;border-radius:6px;">삭제</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>레이아웃 구성 요소</h3>
+  <ul>
+    <li><strong>NavigationBar</strong>: 타이틀 "할 일" + 우상단 <code>+</code> 버튼</li>
+    <li><strong>행(Row)</strong>: 완료 원형 버튼 | 제목 + (우선순위 뱃지 + 마감일) | 상세 이동 chevron</li>
+    <li><strong>완료 상태</strong>: 취소선 + 회색 처리로 시각적 구분</li>
+    <li><strong>스와이프 삭제</strong>: 왼쪽으로 스와이프 → 빨간 삭제 버튼</li>
+  </ul>
+</div>

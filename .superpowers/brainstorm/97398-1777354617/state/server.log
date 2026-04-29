@@ -1,0 +1,6 @@
+{"type":"server-started","port":59057,"host":"127.0.0.1","url_host":"localhost","url":"http://localhost:59057","screen_dir":"/Users/gsitm/Documents/archive/todo/.superpowers/brainstorm/97398-1777354617/content","state_dir":"/Users/gsitm/Documents/archive/todo/.superpowers/brainstorm/97398-1777354617/state"}
+{"type":"screen-added","file":"/Users/gsitm/Documents/archive/todo/.superpowers/brainstorm/97398-1777354617/content/todolist-layout.html"}
+{"type":"screen-added","file":"/Users/gsitm/Documents/archive/todo/.superpowers/brainstorm/97398-1777354617/content/todolist-layout-v2.html"}
+{"type":"screen-added","file":"/Users/gsitm/Documents/archive/todo/.superpowers/brainstorm/97398-1777354617/content/todolist-layout-v3.html"}
+{"type":"screen-added","file":"/Users/gsitm/Documents/archive/todo/.superpowers/brainstorm/97398-1777354617/content/waiting-1.html"}
+{"type":"server-stopped","reason":"idle timeout"}
