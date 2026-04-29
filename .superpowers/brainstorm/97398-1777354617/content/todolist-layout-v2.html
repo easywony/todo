@@ -1,0 +1,122 @@
+<h2>TodoList 화면 레이아웃 v2</h2>
+<p class="subtitle">iOS 네이티브 스타일 · 오른쪽 스와이프 삭제 · 휴지통 아이콘</p>
+
+<div class="section">
+  <div class="mockup">
+    <div class="mockup-header">TodoList Screen</div>
+    <div class="mockup-body" style="padding:0;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;font-size:14px;background:#f2f2f7;">
+
+      <!-- NavigationBar (iOS Large Title style) -->
+      <div style="background:#f2f2f7;padding:8px 16px 4px;">
+        <div style="font-size:11px;font-weight:600;color:#8e8e93;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:2px;">오늘</div>
+        <div style="font-size:34px;font-weight:700;color:#000;line-height:1.1;">할 일</div>
+      </div>
+
+      <!-- Toolbar -->
+      <div style="display:flex;justify-content:flex-end;padding:4px 16px 8px;">
+        <span style="font-size:28px;color:#007aff;line-height:1;">＋</span>
+      </div>
+
+      <!-- List Card -->
+      <div style="background:#fff;border-radius:10px;margin:0 16px;overflow:hidden;box-shadow:none;">
+
+        <!-- Item 1: High priority -->
+        <div style="display:flex;align-items:center;padding:12px 16px;border-bottom:0.5px solid #e5e5ea;gap:12px;">
+          <div style="width:22px;height:22px;border-radius:50%;border:1.5px solid #c7c7cc;flex-shrink:0;"></div>
+          <div style="flex:1;min-width:0;">
+            <div style="font-size:17px;color:#000;letter-spacing:-0.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">디자인 시스템 토큰 정리</div>
+            <div style="display:flex;align-items:center;gap:6px;margin-top:3px;">
+              <span style="display:inline-flex;align-items:center;gap:3px;font-size:12px;font-weight:500;color:#ff3b30;">
+                <svg width="9" height="9" viewBox="0 0 9 9"><circle cx="4.5" cy="4.5" r="4.5" fill="#ff3b30"/></svg>높음
+              </span>
+              <span style="font-size:12px;color:#8e8e93;">4월 30일</span>
+            </div>
+          </div>
+          <svg width="8" height="13" viewBox="0 0 8 13" fill="none"><path d="M1 1l6 5.5L1 12" stroke="#c7c7cc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+
+        <!-- Item 2: Medium priority -->
+        <div style="display:flex;align-items:center;padding:12px 16px;border-bottom:0.5px solid #e5e5ea;gap:12px;">
+          <div style="width:22px;height:22px;border-radius:50%;border:1.5px solid #c7c7cc;flex-shrink:0;"></div>
+          <div style="flex:1;min-width:0;">
+            <div style="font-size:17px;color:#000;letter-spacing:-0.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">TodoList Feature 구현</div>
+            <div style="display:flex;align-items:center;gap:6px;margin-top:3px;">
+              <span style="display:inline-flex;align-items:center;gap:3px;font-size:12px;font-weight:500;color:#ff9500;">
+                <svg width="9" height="9" viewBox="0 0 9 9"><circle cx="4.5" cy="4.5" r="4.5" fill="#ff9500"/></svg>중간
+              </span>
+              <span style="font-size:12px;color:#8e8e93;">5월 2일</span>
+            </div>
+          </div>
+          <svg width="8" height="13" viewBox="0 0 8 13" fill="none"><path d="M1 1l6 5.5L1 12" stroke="#c7c7cc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+
+        <!-- Item 3: Low priority -->
+        <div style="display:flex;align-items:center;padding:12px 16px;border-bottom:0.5px solid #e5e5ea;gap:12px;">
+          <div style="width:22px;height:22px;border-radius:50%;border:1.5px solid #c7c7cc;flex-shrink:0;"></div>
+          <div style="flex:1;min-width:0;">
+            <div style="font-size:17px;color:#000;letter-spacing:-0.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">README 업데이트</div>
+            <div style="display:flex;align-items:center;gap:6px;margin-top:3px;">
+              <span style="display:inline-flex;align-items:center;gap:3px;font-size:12px;font-weight:500;color:#34c759;">
+                <svg width="9" height="9" viewBox="0 0 9 9"><circle cx="4.5" cy="4.5" r="4.5" fill="#34c759"/></svg>낮음
+              </span>
+              <span style="font-size:12px;color:#8e8e93;">마감일 없음</span>
+            </div>
+          </div>
+          <svg width="8" height="13" viewBox="0 0 8 13" fill="none"><path d="M1 1l6 5.5L1 12" stroke="#c7c7cc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+
+        <!-- Item 4: Completed -->
+        <div style="display:flex;align-items:center;padding:12px 16px;gap:12px;opacity:0.5;">
+          <div style="width:22px;height:22px;border-radius:50%;background:#34c759;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+            <svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4.5l3.5 3.5 6.5-7" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div style="flex:1;min-width:0;">
+            <div style="font-size:17px;color:#000;letter-spacing:-0.02em;text-decoration:line-through;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">초기 프로젝트 설정</div>
+          </div>
+          <svg width="8" height="13" viewBox="0 0 8 13" fill="none"><path d="M1 1l6 5.5L1 12" stroke="#c7c7cc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+
+      </div>
+
+      <!-- Swipe right hint -->
+      <div style="margin:12px 16px 0;background:#fff;border-radius:10px;overflow:hidden;">
+        <div style="font-size:11px;font-weight:600;color:#8e8e93;letter-spacing:0.06em;text-transform:uppercase;padding:8px 16px 4px;">오른쪽 스와이프 → 삭제</div>
+        <div style="display:flex;align-items:center;gap:0;">
+          <!-- Trash action revealed on left -->
+          <div style="background:#ff3b30;width:64px;flex-shrink:0;display:flex;align-items:center;justify-content:center;align-self:stretch;border-radius:10px 0 0 10px;">
+            <svg width="20" height="22" viewBox="0 0 20 22" fill="none">
+              <path d="M1 5h18M7 5V3a1 1 0 011-1h4a1 1 0 011 1v2M8 10v6M12 10v6M3 5l1 14a2 2 0 002 2h8a2 2 0 002-2L17 5" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <!-- Row shifted right -->
+          <div style="flex:1;display:flex;align-items:center;padding:12px 16px;gap:12px;background:#fff;border-radius:0 10px 10px 0;">
+            <div style="width:22px;height:22px;border-radius:50%;border:1.5px solid #c7c7cc;flex-shrink:0;"></div>
+            <div style="flex:1;">
+              <div style="font-size:17px;color:#000;letter-spacing:-0.02em;">항목 예시</div>
+              <div style="display:flex;align-items:center;gap:6px;margin-top:3px;">
+                <span style="display:inline-flex;align-items:center;gap:3px;font-size:12px;font-weight:500;color:#ff9500;">
+                  <svg width="9" height="9" viewBox="0 0 9 9"><circle cx="4.5" cy="4.5" r="4.5" fill="#ff9500"/></svg>중간
+                </span>
+                <span style="font-size:12px;color:#8e8e93;">5월 5일</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="height:24px;"></div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>변경 사항</h3>
+  <ul>
+    <li>스와이프 방향 <strong>오른쪽</strong>으로 변경 → 휴지통 아이콘 노출</li>
+    <li>삭제 영역: 텍스트 제거, <strong>휴지통 SVG 아이콘</strong>만 표시</li>
+    <li>iOS 네이티브 Large Title NavigationBar</li>
+    <li>Inset grouped list 스타일 (둥근 카드, 16pt 여백)</li>
+    <li>완료 여부: 속이 빈 원 → 초록 체크 원으로 토글</li>
+    <li>우선순위: 텍스트 뱃지 → 색상 점 + 텍스트 (SF 스타일)</li>
+  </ul>
+</div>
