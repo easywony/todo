@@ -17,7 +17,6 @@ struct TodoListFeature {
         case deleteTodo(id: Todo.ID)
         case addTodoButtonTapped
         case addTodoDismissed
-        case todoRowTapped(id: Todo.ID)
     }
 
     @Dependency(\.todoRepository) var todoRepository
@@ -72,8 +71,6 @@ struct TodoListFeature {
                 }
             }
 
-        case .todoRowTapped:
-            return .none
         }
     }
 }

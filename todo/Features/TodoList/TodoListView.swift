@@ -26,6 +26,17 @@ struct TodoListView: View {
                 }
             }
             .listStyle(.insetGrouped)
+            .overlay {
+                if store.isLoading {
+                    ProgressView()
+                } else if store.todos.isEmpty {
+                    ContentUnavailableView(
+                        "할 일이 없어요",
+                        systemImage: "checklist",
+                        description: Text("+ 버튼을 눌러 할 일을 추가해보세요")
+                    )
+                }
+            }
             .navigationTitle("할 일")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
