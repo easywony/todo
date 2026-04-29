@@ -3,6 +3,7 @@ import SwiftUI
 
 struct AddTodoView: View {
     let store: StoreOf<AddTodoFeature>
+    @Environment(\.dismiss) var dismiss
 
     var body: some View {
         NavigationStack {
@@ -49,13 +50,16 @@ struct AddTodoView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    Button("취소") { store.send(.cancelTapped) }
+                    Button("취소") { dismiss() }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("저장") { store.send(.saveTapped) }
                         .disabled(store.isSaveDisabled)
                         .fontWeight(.semibold)
                 }
+            }
+            .onChange(of: store.isSaved) { _, isSaved in
+                if isSaved { dismiss() }
             }
         }
     }

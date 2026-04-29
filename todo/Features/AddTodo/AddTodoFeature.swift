@@ -9,6 +9,7 @@ struct AddTodoFeature {
         var priority: Todo.Priority = .medium
         var dueDate = Date()
         var isDueDateEnabled = false
+        var isSaved = false
 
         var isSaveDisabled: Bool {
             title.trimmingCharacters(in: .whitespaces).isEmpty
@@ -21,11 +22,10 @@ struct AddTodoFeature {
         case dueDateToggled
         case dueDateChanged(Date)
         case saveTapped
-        case cancelTapped
+        case saveCompleted
     }
 
     @Dependency(\.todoRepository) var todoRepository
-    @Dependency(\.dismiss) var dismiss
 
     func reduce(into state: inout State, action: Action) -> Effect<Action> {
         switch action {
@@ -51,13 +51,14 @@ struct AddTodoFeature {
                 dueDate: state.isDueDateEnabled ? state.dueDate : nil,
                 priority: state.priority
             )
-            return .run { [todo] _ in
+            return .run { [todo] send in
                 try await todoRepository.add(todo)
-                await dismiss()
+                await send(.saveCompleted)
             }
 
-        case .cancelTapped:
-            return .run { _ in await dismiss() }
+        case .saveCompleted:
+            state.isSaved = true
+            return .none
         }
     }
 }
